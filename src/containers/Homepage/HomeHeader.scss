@@ -3,7 +3,7 @@
     width: 100%;
     padding: 5px 20px;
     box-sizing: border-box;
-    box-shadow: 0 5px 6px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.5);
 
     .home-header-content {
         width: 100%;
@@ -49,6 +49,118 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+        }
+    }
+}
+
+.home-header-banner {
+    background: url("../../assets/images//bookingcare-cover-4.jpg") center center no-repeat;
+    background-size: cover;
+    height: 550px;
+    position: relative;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+
+    .background-blur {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 50%, rgba(225, 225, 225, 0.5) 100%);
+    }
+
+    .content-above {
+        height: 50%;
+        .banner-title-1 {
+            font-size: 30px;
+            text-align: center;
+            text-shadow: 1px 1px 1px #000000;
+            color: #fff;
+            margin-bottom: 10px;
+            z-index: 20;
+            position: relative;
+        }
+
+        .banner-title-2 {
+            position: relative;
+            font-size: 35px;
+            text-shadow: 1px 1px 1px #000000;
+            text-align: center;
+            color: #fff;
+            z-index: 20;
+            margin-bottom: 30px;
+        }
+
+        .search {
+            display: flex;
+            justify-content: center;
+            width: fit-content;
+            align-items: center;
+            margin: auto;
+            padding: 10px;
+            height: 50px;
+            width: 500px;
+            border-radius: 10px;
+            color: #000;
+            background-color: rgb(234, 255, 0);
+            border-radius: 50px;
+            input {
+                font-size: 16px;
+                padding: 0 5px;
+                z-index: 20;
+                outline: none;
+                width: 100%;
+                background-color: transparent;
+                border: none;
+            }
+            i {
+                margin: 0 5px;
+            }
+        }
+    }
+
+    .content-below {
+        height: 50%;
+        z-index: 20;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        .options {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 10px;
+            .option-child {
+                width: 150px;
+                text-align: center;
+                color: #000;
+                .icon-child {
+                    background-color: #fff;
+                    width: 60px;
+                    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+                    height: 60px;
+                    font-size: 35px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #00dede;
+                    border-radius: 50%;
+                    text-align: center;
+                    margin: 0 auto;
+                }
+                .text-child {
+                    font-size: 17px;
+                    font-weight: 600;
+                    margin-top: 10px;
+                }
+                &:hover {
+                    cursor: pointer;
+                    color: #00bdc4;
+                }
+            }
         }
     }
 }
