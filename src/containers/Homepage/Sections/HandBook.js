@@ -28,7 +28,7 @@ function SamplePrevArrow(props) {
   );
 }
 
-class Specialty extends Component {
+class HandBook extends Component {
   render() {
     const settings = {
       dots: false,
@@ -43,10 +43,10 @@ class Specialty extends Component {
       prevArrow: <SamplePrevArrow />,
     };
     return (
-      <div className="section section-specialty d-flex align-items-center">
+      <div className="section section-handbook d-flex align-items-center">
         <div className="container">
           <div className="section-header">
-            <h3>Chuyên khoa phổ biến</h3>
+            <h3>Cẩm nang</h3>
             <button> Xem thêm </button>
           </div>
           <div className="section-content">
@@ -118,4 +118,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default connect(mapStateToProps, mapDispatchToProps)(HandBook);

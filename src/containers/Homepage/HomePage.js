@@ -2,13 +2,22 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import HomeHeader from "./HomeHeader";
 import Specialty from "./Sections/Specialty";
+import MedicalFacility from "./Sections/MedicalFacility";
+import "./HomePage.scss";
+import Doctor from "./Sections/Doctor";
+import HandBook from "./Sections/HandBook";
 
 class HomePage extends Component {
   render() {
-    return <div>
+    return (
+      <div>
         <HomeHeader />
         <Specialty />
-    </div>;
+        <MedicalFacility />
+        <Doctor />
+        <HandBook />
+      </div>
+    );
   }
 }
 

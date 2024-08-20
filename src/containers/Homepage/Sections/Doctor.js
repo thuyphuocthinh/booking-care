@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./Specialty.scss";
+import "./Doctor.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import sectionImg from "../../../assets/images/specialty.jpg";
+import doctorImg from "../../../assets/images/doctor.png";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -28,7 +28,7 @@ function SamplePrevArrow(props) {
   );
 }
 
-class Specialty extends Component {
+class Doctor extends Component {
   render() {
     const settings = {
       dots: false,
@@ -43,60 +43,68 @@ class Specialty extends Component {
       prevArrow: <SamplePrevArrow />,
     };
     return (
-      <div className="section section-specialty d-flex align-items-center">
+      <div className="section doctor-section d-flex align-items-center">
         <div className="container">
           <div className="section-header">
-            <h3>Chuyên khoa phổ biến</h3>
+            <h3>Bác sĩ nổi bật tuần qua</h3>
             <button> Xem thêm </button>
           </div>
           <div className="section-content">
             <Slider {...settings}>
               <div className="section-outer">
                 <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
+                  <img src={doctorImg} />
+                  <h4>Giáo sư Nguyễn Văn A</h4>
+                  <h5>Cơ xương khớp</h5>
                 </div>
               </div>
               <div className="section-outer">
                 <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
+                  <img src={doctorImg} />
+                  <h4>Giáo sư Nguyễn Văn A</h4>
+                  <h5>Cơ xương khớp</h5>
                 </div>
               </div>
               <div className="section-outer">
                 <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
+                  <img src={doctorImg} />
+                  <h4>Giáo sư Nguyễn Văn A</h4>
+                  <h5>Cơ xương khớp</h5>
                 </div>
               </div>
               <div className="section-outer">
                 <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
+                  <img src={doctorImg} />
+                  <h4>Giáo sư Nguyễn Văn A</h4>
+                  <h5>Cơ xương khớp</h5>
                 </div>
               </div>
               <div className="section-outer">
                 <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
+                  <img src={doctorImg} />
+                  <h4>Giáo sư Nguyễn Văn A</h4>
+                  <h5>Cơ xương khớp</h5>
                 </div>
               </div>
               <div className="section-outer">
                 <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
+                  <img src={doctorImg} />
+                  <h4>Giáo sư Nguyễn Văn A</h4>
+                  <h5>Cơ xương khớp</h5>
                 </div>
               </div>
               <div className="section-outer">
                 <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
+                  <img src={doctorImg} />
+                  <h4>Giáo sư Nguyễn Văn A</h4>
+                  <h5>Cơ xương khớp</h5>
                 </div>
               </div>
               <div className="section-outer">
                 <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
+                  <img src={doctorImg} />
+                  <h4>Giáo sư Nguyễn Văn A</h4>
+                  <h5>Cơ xương khớp</h5>
                 </div>
               </div>
             </Slider>
@@ -118,4 +126,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default connect(mapStateToProps, mapDispatchToProps)(Doctor);
