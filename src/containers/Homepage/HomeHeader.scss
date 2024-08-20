@@ -18,10 +18,11 @@
             align-items: center;
             font-size: 25px;
             color: grey;
+            gap: 10px;
             .header-logo {
                 background: url("../../assets/images/logo.png") center center no-repeat;
                 height: 90%;
-                width: 100%;
+                width: 50%;
                 background-size: contain;
                 cursor: pointer;
                 margin-left: 5px;
@@ -47,8 +48,31 @@
             width: 25%;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
+            justify-content: flex-end;
+            gap: 40px;
+            .support {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                i {
+                    font-size: 18px;
+                }
+            }
+            .language {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                .language-vi {
+                    cursor: pointer;
+                }
+                .language-en {
+                    cursor: pointer;
+                }
+                .active {
+                    font-weight: 700;
+                    color: #00afaf;
+                }
+            }
         }
     }
 }
@@ -69,7 +93,7 @@
         z-index: 0;
         left: 0;
         right: 0;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 50%, rgba(225, 225, 225, 0.5) 100%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 50%, rgba(225, 225, 225, 1) 100%);
     }
 
     .content-above {
@@ -95,6 +119,7 @@
         }
 
         .search {
+            z-index: 20;
             display: flex;
             justify-content: center;
             width: fit-content;
@@ -105,7 +130,7 @@
             width: 500px;
             border-radius: 10px;
             color: #000;
-            background-color: rgb(234, 255, 0);
+            background-color: rgb(255, 193, 14);
             border-radius: 50px;
             input {
                 font-size: 16px;
@@ -132,11 +157,15 @@
             display: flex;
             align-items: center;
             justify-content: space-around;
-            gap: 10px;
+            gap: 20px;
             .option-child {
                 width: 150px;
+                height: 120px;
                 text-align: center;
                 color: #000;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
                 .icon-child {
                     background-color: #fff;
                     width: 60px;
@@ -158,7 +187,7 @@
                 }
                 &:hover {
                     cursor: pointer;
-                    color: #00bdc4;
+                    color: #006d70;
                 }
             }
         }
