@@ -4,6 +4,10 @@
     padding: 5px 20px;
     box-sizing: border-box;
     box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: #fff;
 
     .home-header-content {
         width: 100%;
