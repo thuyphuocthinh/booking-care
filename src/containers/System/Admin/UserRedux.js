@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { getAllCodeService } from "../../../services/allCodeService";
+import * as actions from "../../../store/actions/adminActions";
 
 class UserRedux extends Component {
   constructor(props) {
@@ -19,31 +20,26 @@ class UserRedux extends Component {
         roleId: "",
         positionId: "",
       },
-      gender: [],
+      genders: [],
       roles: [],
     };
   }
 
-  componentDidMount = async () => {
-    try {
-      const genderData = await getAllCodeService("GENDER");
-      const roleData = await getAllCodeService("ROLE");
-      this.setState(
-        {
-          ...this.state,
-          gender: genderData.data.data,
-          roles: roleData.data.data,
-        },
-        () => {
-          console.log(this.state.gender);
-        }
-      );
-    } catch (error) {
-      console.log(error);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.genders !== this.props.genders) {
+      this.setState({
+        ...this.state,
+        genders: this.props.genders,
+      });
     }
+  }
+
+  componentDidMount = () => {
+    this.props.getGenderStart();
   };
 
   render() {
+    const { genders } = this.props;
     return (
       <div className="user-redux-container">
         <div className="title mt-5 mb-4">Learn React-Redux</div>
@@ -123,7 +119,7 @@ class UserRedux extends Component {
                   <FormattedMessage id="manage-user.role" />
                 </label>
                 <select id="roleId" name="roleId" className="form-select">
-                <option selected disabled>
+                  <option selected disabled>
                     --- Chọn vai trò ---
                   </option>
                   {this.state.roles.map((item) => {
@@ -143,7 +139,7 @@ class UserRedux extends Component {
                   <option selected disabled>
                     --- Chọn giới tính ---
                   </option>
-                  {this.state.gender.map((item) => {
+                  {genders.map((item) => {
                     return (
                       <option value={item.key} key={item.id}>
                         {item.valueVi}
@@ -190,11 +186,15 @@ class UserRedux extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    genders: state.admin.genders,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    getGenderStart: () => dispatch(actions.fetchGenderStart()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserRedux);
