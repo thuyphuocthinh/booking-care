@@ -3,7 +3,6 @@ import React, { Component, createRef } from "react";
 import "./UserManage.scss";
 import { connect } from "react-redux";
 import { getAllUsersService } from "../../services/userService";
-import Header from "../Header/Header";
 import ModalUser from "./ModalUser";
 
 class UserManage extends Component {
@@ -46,7 +45,6 @@ class UserManage extends Component {
   render() {
     return (
       <>
-        <Header />
         <ModalUser
           ref={this.childRef}
           open={this.state.openModal}

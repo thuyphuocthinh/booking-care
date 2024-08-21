@@ -8,7 +8,8 @@
     "select-doctor": "Select good doctors",
     "fee": "Options",
     "check-health": "General health check",
-    "support": "Support"
+    "support": "Support",
+    "welcome": "Welcome"
   },
   "banner": {
     "title1": "MEDICAL PLATFORM",
@@ -53,12 +54,24 @@
       "system-administrator": {
         "header": "System Administrator",
         "user-manage": "User manage",
-        "product-manage": "Package manage",
-        "register-package-group-or-account": "Register service package for group/account"
+        "user-redux": "User redux"
       },
       "system-parameter": {
         "header": "System-parameter"
       }
+    },
+    "admin": {
+      "manage-user": "User",
+      "manage-doctor": "Manage doctors",
+      "manage-admin": "Manage admin",
+      "crud": "CRUD user",
+      "crud-redux": "CRUD redux",
+      "clinics": "Clinics",
+      "manage-clinics": "Manage clinics",
+      "specialty": "Specialty",
+      "manage-specialty": "Manage specialty",
+      "handbook": "Handbook",
+      "manage-handbook": "Manage handbook"
     }
   },
   "system": {
@@ -138,5 +151,19 @@
       "remove-assign-fail": "Fail to unassign service package to customer",
       "sure-delete-assign": "Are you sure to unassign service package to customer?"
     }
+  },
+  "manage-user": {
+    "add": "Add a new user",
+    "email": "Email",
+    "password": "Password",
+    "firstName": "Firstname",
+    "lastName": "Lastname",
+    "gender": "Gender",
+    "address": "Address",
+    "phoneNumber": "Phone number",
+    "position": "Position",
+    "image": "Avatar",
+    "role": "Role",
+    "addButton": "Add new"
   }
 }
