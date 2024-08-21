@@ -43,3 +43,35 @@ export const fetchGenderSuccess = (data) => ({
 export const fetchGenderFailed = () => ({
   type: actionTypes.FETCH_GENDER_FAILED,
 });
+
+export const getRolesAction = () => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await getAllCodeService("ROLE");
+      if (res && res.data.errCode === 0) {
+        dispatch({
+          type: actionTypes.GET_ROLE_ACTION,
+          payload: res.data.data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getPositionAction = () => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await getAllCodeService("POSITION");
+      if (res && res.data.errCode === 0) {
+        dispatch({
+          type: actionTypes.GET_POSITION_ACTION,
+          payload: res.data.data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

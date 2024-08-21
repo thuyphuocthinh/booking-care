@@ -4,6 +4,8 @@ const initialState = {
   isLoggedIn: false,
   adminInfo: null,
   genders: [],
+  roles: [],
+  positions: [],
 };
 
 const appReducer = (state = initialState, action) => {
@@ -29,9 +31,24 @@ const appReducer = (state = initialState, action) => {
     case actionTypes.FETCH_GENDER_START:
       return { ...state };
     case actionTypes.FETCH_GENDER_SUCCESS:
-      return { ...state, genders: action.payload };
+      return {
+        ...state,
+        genders: action.payload,
+      };
     case actionTypes.FETCH_GENDER_FAILED:
       return { ...state };
+    case actionTypes.GET_ROLE_ACTION:
+      console.log("ROLE: ", action.payload);
+      return {
+        ...state,
+        roles: action.payload,
+      };
+    case actionTypes.GET_POSITION_ACTION:
+      console.log("POSITION: ", action.payload);
+      return {
+        ...state,
+        positions: action.payload,
+      };
     default:
       return state;
   }
