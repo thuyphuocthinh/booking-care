@@ -22,6 +22,7 @@ const actionTypes = Object.freeze({
   ADD_USER_SUCCESS: "ADD_USER_SUCCESS",
   USER_LOGIN_SUCCESS: "USER_LOGIN_SUCCESS",
   FETCH_TOP_DOCTORS: "FETCH_TOP_DOCTORS",
+  FETCH_ALL_DOCTORS: "FETCH_ALL_DOCTORS",
 });
 
 export default actionTypes;

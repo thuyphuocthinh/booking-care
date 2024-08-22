@@ -4,6 +4,7 @@ const intialState = {
   userInfo: null,
   isLoggedIn: false,
   topDoctors: [],
+  doctors: [],
 };
 
 const UserReducer = (state = intialState, action) => {
@@ -26,6 +27,12 @@ const UserReducer = (state = intialState, action) => {
       return {
         ...state,
         topDoctors: action.payload,
+      };
+
+    case actionTypes.FETCH_ALL_DOCTORS:
+      return {
+        ...state,
+        doctors: action.payload,
       };
     default:
       return state;

@@ -7,19 +7,17 @@ import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import "./ManageDoctor.scss";
 import Select from "react-select";
+import { fetchAllDoctors } from "../../../store/actions/userActions";
+import { languages } from "../../../utils/constant";
+import { saveDoctorInfo } from "../../../services/doctorService";
 const mdParser = new MarkdownIt(/* Markdown-it options */);
-
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
 
 class ManageDoctor extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedOption: null,
+      doctors: [],
       doctor: {
         doctorId: "",
         description: "",
@@ -47,10 +45,19 @@ class ManageDoctor extends Component {
         ["contentMarkdown"]: text,
       },
     });
-  }
+  };
 
   componentDidMount = () => {
     // call API => get data
+    this.props.getAllDoctors();
+  };
+
+  componentDidUpdate = (prevProps, prevState, snapshot) => {
+    if (prevProps.doctors !== this.props.doctors) {
+      this.setState({
+        doctors: this.props.doctors,
+      });
+    }
   };
 
   componentWillUnmount() {
@@ -69,8 +76,41 @@ class ManageDoctor extends Component {
     );
   };
 
-  handleSubmit = () => {
-    console.log(this.state.doctor);
+  validate = () => {
+    let isValid = true;
+    const arrCheck = [
+      "doctorId",
+      "description",
+      "contentHTML",
+      "contentMarkdown",
+    ];
+    const arrEmptyFields = [];
+    for (const item of arrCheck) {
+      if (!this.state.doctor[item]) {
+        isValid = false;
+        arrEmptyFields.push(item);
+      }
+    }
+    return { isValid, arrEmptyFields };
+  };
+
+  handleSubmit = async () => {
+    if (this.validate().isValid) {
+      const resp = await saveDoctorInfo(this.state.doctor);
+      alert("Save doctor info successfully");
+      this.setState({
+        doctor: {
+          doctorId: "",
+          description: "",
+          contentHTML: "",
+          contentMarkdown: "",
+        },
+        selectedOption: null,
+      });
+    } else {
+      const msg = this.validate().arrEmptyFields.join(", ");
+      alert(msg + " cannot be empty.");
+    }
   };
 
   render() {
@@ -86,7 +126,17 @@ class ManageDoctor extends Component {
             <Select
               value={selectedOption}
               onChange={this.handleChange}
-              options={options}
+              options={this.state.doctors.map((item) => {
+                const { language } = this.props;
+                const title =
+                  language === languages.VI
+                    ? item.positionData.valueVI
+                    : item.positionData.valueEn;
+                return {
+                  value: item.id,
+                  label: title + " " + item.lastName + " " + item.firstName,
+                };
+              })}
             />
           </div>
           <div className="col-md-6">
@@ -109,6 +159,7 @@ class ManageDoctor extends Component {
             style={{ height: "500px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.handleEditorChange}
+            value={this.state.doctor.contentMarkdown}
           />
         </div>
         <div className="mb-5">
@@ -122,11 +173,16 @@ class ManageDoctor extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    doctors: state.user.doctors,
+    language: state.app.language,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    getAllDoctors: () => dispatch(fetchAllDoctors()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageDoctor);
