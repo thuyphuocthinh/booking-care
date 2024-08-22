@@ -3,6 +3,7 @@ import actionTypes from "../actions/actionTypes";
 const intialState = {
   userInfo: null,
   isLoggedIn: false,
+  topDoctors: [],
 };
 
 const UserReducer = (state = intialState, action) => {
@@ -21,6 +22,11 @@ const UserReducer = (state = intialState, action) => {
         isLoggedIn: false,
       };
 
+    case actionTypes.FETCH_TOP_DOCTORS:
+      return {
+        ...state,
+        topDoctors: action.payload,
+      };
     default:
       return state;
   }

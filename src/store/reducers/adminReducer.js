@@ -6,6 +6,8 @@ const initialState = {
   genders: [],
   roles: [],
   positions: [],
+  users: [],
+  currentUser: {},
 };
 
 const appReducer = (state = initialState, action) => {
@@ -38,16 +40,24 @@ const appReducer = (state = initialState, action) => {
     case actionTypes.FETCH_GENDER_FAILED:
       return { ...state };
     case actionTypes.GET_ROLE_ACTION:
-      console.log("ROLE: ", action.payload);
       return {
         ...state,
         roles: action.payload,
       };
     case actionTypes.GET_POSITION_ACTION:
-      console.log("POSITION: ", action.payload);
       return {
         ...state,
         positions: action.payload,
+      };
+    case actionTypes.GET_ALL_USERS:
+      return {
+        ...state,
+        users: action.payload,
+      };
+    case actionTypes.GET_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.payload,
       };
     default:
       return state;

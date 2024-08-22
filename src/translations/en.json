@@ -165,5 +165,9 @@
     "image": "Avatar",
     "role": "Role",
     "addButton": "Add new"
+  },
+  "homepage": {
+    "outstanding-doctor": "Outstanding doctors",
+    "more-info": "See more"
   }
 }

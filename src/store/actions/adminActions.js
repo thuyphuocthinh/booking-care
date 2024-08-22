@@ -1,4 +1,9 @@
 import { getAllCodeService } from "../../services/allCodeService";
+import {
+  deleteUser,
+  getAllUsersService,
+  getUserById,
+} from "../../services/userService";
 import actionTypes from "./actionTypes";
 
 export const adminLoginSuccess = (adminInfo) => ({
@@ -69,6 +74,66 @@ export const getPositionAction = () => {
           type: actionTypes.GET_POSITION_ACTION,
           payload: res.data.data,
         });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getAllUsersAction = () => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await getAllUsersService();
+      if (res.status === 200 && res) {
+        dispatch({
+          type: actionTypes.GET_ALL_USERS,
+          payload: res.data.data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const saveUserAction = () => {
+  return async (dispatch, getState) => {
+    try {
+      // do some thing here but do not need
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getCurrentUserAction = (userId) => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await getUserById(userId);
+      if (res && res.status === 200) {
+        dispatch({
+          type: actionTypes.GET_CURRENT_USER,
+          payload: res.data.data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deleteUserAction = (userId) => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await deleteUser(userId);
+      if (res && res.data.errCode === 0) {
+        const result = await getAllUsersService();
+        if (result && result.status === 200)
+          dispatch({
+            type: actionTypes.GET_ALL_USERS,
+            payload: result.data.data,
+          });
       }
     } catch (error) {
       console.log(error);
