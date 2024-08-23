@@ -8,6 +8,7 @@ import doctorImg from "../../../assets/images/doctor.png";
 import { fetchTopDoctors } from "../../../store/actions/userActions";
 import { languages } from "../../../utils/constant";
 import { FormattedMessage } from "react-intl";
+import { NavLink } from "react-router-dom";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -99,14 +100,16 @@ class Doctor extends Component {
                     : item.positionData.valueEn;
                 return (
                   <div className="section-outer" key={item.id}>
-                    <div className="section-inner">
-                      <img src={imageBase64} />
-                      <h4 className="mt-3 mb-2">{position}</h4>
-                      <h4>
-                        {item.lastName} {item.firstName}
-                      </h4>
-                      <h5>Cơ xương khớp</h5>
-                    </div>
+                    <NavLink to={`/doctorDetail/${item.id}`}>
+                      <div className="section-inner">
+                        <img src={imageBase64} />
+                        <h4 className="mt-3 mb-2">{position}</h4>
+                        <h4>
+                          {item.lastName} {item.firstName}
+                        </h4>
+                        <h5>Cơ xương khớp</h5>
+                      </div>
+                    </NavLink>
                   </div>
                 );
               })}

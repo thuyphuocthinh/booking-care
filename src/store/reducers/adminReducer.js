@@ -8,6 +8,7 @@ const initialState = {
   positions: [],
   users: [],
   currentUser: {},
+  schedule: [],
 };
 
 const appReducer = (state = initialState, action) => {
@@ -58,6 +59,11 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload,
+      };
+    case actionTypes.FETCH_ALL_CODE_SCHEDULE:
+      return {
+        ...state,
+        schedule: action.payload,
       };
     default:
       return state;

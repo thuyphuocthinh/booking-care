@@ -8,12 +8,14 @@ import Doctor from "./Sections/Doctor";
 import HandBook from "./Sections/HandBook";
 import About from "./Sections/About";
 import HomeFooter from "./HomeFooter";
+import HomeBanner from "./HomeBanner";
 
 class HomePage extends Component {
   render() {
     return (
       <div>
         <HomeHeader />
+        <HomeBanner />
         <Specialty />
         <MedicalFacility />
         <Doctor />

@@ -140,3 +140,19 @@ export const deleteUserAction = (userId) => {
     }
   };
 };
+
+export const fetchScheduleAction = () => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await getAllCodeService("TIME");
+      if (res && res.data.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALL_CODE_SCHEDULE,
+          payload: res.data.data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

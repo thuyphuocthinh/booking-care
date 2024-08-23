@@ -72,6 +72,9 @@
       "manage-specialty": "Quản lí chuyên khoa",
       "handbook": "Cẩm nang",
       "manage-handbook": "Quản lí cẩm nang"
+    },
+    "doctor": {
+      "manage-schedule": "Quản lí lịch khám"
     }
   },
   "system": {
@@ -169,5 +172,8 @@
   "homepage": {
     "outstanding-doctor": "Bác sĩ nổi bật",
     "more-info": "Xem thêm"
+  },
+  "manage-schedule": {
+    "title": "Thêm lịch khám"
   }
 }

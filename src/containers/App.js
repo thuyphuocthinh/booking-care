@@ -22,6 +22,8 @@ import { CustomToastCloseButton } from "../components/CustomToast";
 import ConfirmModal from "../components/ConfirmModal";
 import HomePage from "./Homepage/HomePage";
 import CustomScrollbars from "../components/CustomScrollbars";
+import DetailDoctor from "./Patient/Doctor/DetailDoctor";
+import Doctor from "../routes/Doctor";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -55,6 +57,10 @@ class App extends Component {
                 <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
                   <Route path={path.HOME} exact component={Home} />
                   <Route
+                    path={"/doctor"}
+                    component={userIsAuthenticated(Doctor)}
+                  />
+                  <Route
                     path={path.LOGIN}
                     component={userIsNotAuthenticated(Login)}
                   />
@@ -63,21 +69,25 @@ class App extends Component {
                     component={userIsAuthenticated(System)}
                   />
                   <Route path={path.HOMEPAGE} component={HomePage} />
+                  <Route
+                    path={"/doctorDetail/:id"}
+                    exact
+                    component={DetailDoctor}
+                  />
                 </CustomScrollbars>
               </Switch>
             </span>
 
             <ToastContainer
-              className="toast-container"
-              toastClassName="toast-item"
-              bodyClassName="toast-item-body"
-              autoClose={false}
-              hideProgressBar={true}
-              pauseOnHover={false}
+              position="bottom-right"
+              autoClose={5000}
+              rtl={true}
+              hideProgressBar={false}
+              pauseOnHover={true}
               pauseOnFocusLoss={true}
-              closeOnClick={false}
-              draggable={false}
-              closeButton={<CustomToastCloseButton />}
+              closeOnClick={true}
+              draggable={true}
+              style={{ width: "fit-content" }}
             />
           </div>
         </Router>

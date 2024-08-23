@@ -9,13 +9,18 @@ import "./ManageDoctor.scss";
 import Select from "react-select";
 import { fetchAllDoctors } from "../../../store/actions/userActions";
 import { languages } from "../../../utils/constant";
-import { saveDoctorInfo } from "../../../services/doctorService";
+import {
+  getDetailDoctorService,
+  saveDoctorInfo,
+  updateDetailDoctorService,
+} from "../../../services/doctorService";
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 class ManageDoctor extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      hasOldData: false,
       selectedOption: null,
       doctors: [],
       doctor: {
@@ -27,14 +32,41 @@ class ManageDoctor extends Component {
     };
   }
 
-  handleChange = (selectedOption) => {
+  handleChangeSelect = async (selectedOption) => {
     this.setState({
       selectedOption: selectedOption,
       doctor: {
         ...this.state.doctor,
-        ["doctorId"]: selectedOption.value,
+        ["doctorId"]: parseInt(selectedOption.value),
       },
     });
+    const resp = await getDetailDoctorService(selectedOption.value);
+    if (resp.status === 200 && resp.data.errCode === 0) {
+      const data = resp.data.data;
+      if (data.doctorData) {
+        this.setState({
+          selectedOption: selectedOption,
+          hasOldData: true,
+          doctor: {
+            ...this.state.doctor,
+            contentHTML: data.doctorData.contentHTML,
+            contentMarkdown: data.doctorData.contentMarkdown,
+            description: data.doctorData.description,
+          },
+        });
+      } else {
+        this.setState({
+          selectedOption: selectedOption,
+          hasOldData: false,
+          doctor: {
+            ...this.state.doctor,
+            contentHTML: "",
+            contentMarkdown: "",
+            description: "",
+          },
+        });
+      }
+    }
   };
 
   handleEditorChange = ({ html, text }) => {
@@ -113,6 +145,26 @@ class ManageDoctor extends Component {
     }
   };
 
+  handleUpdate = async () => {
+    if (this.validate().isValid) {
+      const resp = await updateDetailDoctorService(this.state.doctor);
+      console.log(resp);
+      alert("Update doctor info successfully");
+      this.setState({
+        doctor: {
+          doctorId: "",
+          description: "",
+          contentHTML: "",
+          contentMarkdown: "",
+        },
+        selectedOption: null,
+      });
+    } else {
+      const msg = this.validate().arrEmptyFields.join(", ");
+      alert(msg + " cannot be empty.");
+    }
+  };
+
   render() {
     const { selectedOption } = this.state;
     return (
@@ -125,7 +177,7 @@ class ManageDoctor extends Component {
             </label>
             <Select
               value={selectedOption}
-              onChange={this.handleChange}
+              onChange={this.handleChangeSelect}
               options={this.state.doctors.map((item) => {
                 const { language } = this.props;
                 const title =
@@ -163,9 +215,21 @@ class ManageDoctor extends Component {
           />
         </div>
         <div className="mb-5">
-          <button onClick={this.handleSubmit} className="btn btn-primary px-3">
-            Lưu thông tin
-          </button>
+          {!this.state.hasOldData ? (
+            <button
+              onClick={this.handleSubmit}
+              className="btn btn-primary px-3"
+            >
+              Lưu thông tin
+            </button>
+          ) : (
+            <button
+              onClick={this.handleUpdate}
+              className="btn btn-success px-3"
+            >
+              Cập nhật
+            </button>
+          )}
         </div>
       </div>
     );

@@ -16,3 +16,16 @@ export const saveDoctorInfo = (doctorInfo) => {
     doctorInfo
   );
 };
+
+export const getDetailDoctorService = (doctorId) => {
+  return axios.get(
+    `http://localhost:8080/api/doctors/get-detail-doctor/${doctorId}`
+  );
+};
+
+export const updateDetailDoctorService = (doctorInfo) => {
+  return axios.patch(
+    "http://localhost:8080/api/doctors/update-detail-doctor",
+    doctorInfo
+  );
+};

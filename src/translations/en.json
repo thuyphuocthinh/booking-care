@@ -72,6 +72,9 @@
       "manage-specialty": "Manage specialty",
       "handbook": "Handbook",
       "manage-handbook": "Manage handbook"
+    },
+    "doctor": {
+      "manage-schedule": "Manage schedule"
     }
   },
   "system": {
@@ -169,5 +172,8 @@
   "homepage": {
     "outstanding-doctor": "Outstanding doctors",
     "more-info": "See more"
+  },
+  "manage-schedule": {
+    "title": "Add schedule"
   }
 }
