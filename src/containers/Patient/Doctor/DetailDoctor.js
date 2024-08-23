@@ -45,14 +45,9 @@ class DetailDoctor extends Component {
       try {
         const resp = await getDetailDoctorService(id);
         if (resp.status === 200 && resp.data.errCode === 0) {
-          this.setState(
-            {
-              doctorDetail: resp.data.data,
-            },
-            () => {
-              console.log(this.state.doctorDetail);
-            }
-          );
+          this.setState({
+            doctorDetail: resp.data.data,
+          });
         }
       } catch (error) {
         console.log(error);

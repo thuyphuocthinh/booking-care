@@ -21,7 +21,7 @@ class ManageSchedule extends Component {
       schedule: [],
       submitInfo: {
         doctorId: "",
-        date: "",
+        date: new Date(),
         timeRange: [],
       },
     };
@@ -61,7 +61,7 @@ class ManageSchedule extends Component {
       currentDate: value[0],
       submitInfo: {
         ...this.state.submitInfo,
-        ["date"]: new Date(value[0]).getTime(),
+        ["date"]: new Date(value[0]),
       },
     });
   };
@@ -119,7 +119,7 @@ class ManageSchedule extends Component {
       const resp = await bulkCreateNewScheduleService({
         arrSchedule: result,
         doctorId: this.state.selectedOption.value,
-        date: new Date(this.state.currentDate).getTime(),
+        date: new Date(this.state.currentDate),
       });
       if (resp.status === 200 && resp.data.errCode === 0) {
         toast.success(resp.data.msg);
