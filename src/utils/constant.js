@@ -6,6 +6,8 @@ export const path = {
   SYSTEM: "/system",
 };
 
+export const VND_USD = 0.00004;
+
 export const languages = {
   VI: "vi",
   EN: "en",

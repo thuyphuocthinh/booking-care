@@ -156,3 +156,60 @@ export const fetchScheduleAction = () => {
     }
   };
 };
+
+export const fetchPricesAction = () => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await getAllCodeService("PRICE");
+      if (res && res.data.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_PRICE_ACTION,
+          payload: res.data.data,
+        });
+      } else {
+        dispatch(fetchGenderFailed());
+      }
+    } catch (error) {
+      dispatch(fetchGenderFailed());
+      console.log(error);
+    }
+  };
+};
+
+export const fetchPaymentsAction = () => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await getAllCodeService("PAYMENT");
+      if (res && res.data.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_PAYMENT_ACTION,
+          payload: res.data.data,
+        });
+      } else {
+        dispatch(fetchGenderFailed());
+      }
+    } catch (error) {
+      dispatch(fetchGenderFailed());
+      console.log(error);
+    }
+  };
+};
+
+export const fetchProvincesAction = () => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await getAllCodeService("PROVINCE");
+      if (res && res.data.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_PROVINCE_ACTION,
+          payload: res.data.data,
+        });
+      } else {
+        dispatch(fetchGenderFailed());
+      }
+    } catch (error) {
+      dispatch(fetchGenderFailed());
+      console.log(error);
+    }
+  };
+};

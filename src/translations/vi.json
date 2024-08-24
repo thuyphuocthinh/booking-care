@@ -175,5 +175,21 @@
   },
   "manage-schedule": {
     "title": "Thêm lịch khám"
+  },
+  "admin": {
+    "manage-doctor": {
+      "title": "Tạo thêm thông tin bác sĩ",
+      "select-doctor": "Chọn bác sĩ",
+      "intro-doctor": "Giới thiệu bác sĩ",
+      "detail-doctor": "Chi tiết bác sĩ",
+      "price": "Giá khám bệnh",
+      "payment": "Phương thức thanh toán",
+      "province": "Tỉnh/thành",
+      "addressClinic": "Địa chỉ phòng khám",
+      "nameClinic": "Tên phòng khám",
+      "note": "Ghi chú",
+      "save": "Lưu thông tin",
+      "update": "Cập nhật"
+    }
   }
 }

@@ -175,5 +175,21 @@
   },
   "manage-schedule": {
     "title": "Add schedule"
+  },
+  "admin": {
+    "manage-doctor": {
+      "title": "Create doctor's information",
+      "select-doctor": "Select doctor",
+      "intro-doctor": "Doctor's introduction",
+      "detail-doctor": "Doctor's detail",
+      "price": "Price",
+      "payment": "Payment method",
+      "province": "Province/City",
+      "addressClinic": "Clinic address",
+      "nameClinic": "Clinic name",
+      "note": "Note",
+      "save": "Save",
+      "update": "Update"
+    }
   }
 }

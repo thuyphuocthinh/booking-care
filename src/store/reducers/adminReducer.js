@@ -9,6 +9,9 @@ const initialState = {
   users: [],
   currentUser: {},
   schedule: [],
+  prices: [],
+  payments: [],
+  provinces: [],
 };
 
 const appReducer = (state = initialState, action) => {
@@ -64,6 +67,21 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         schedule: action.payload,
+      };
+    case actionTypes.FETCH_PRICE_ACTION:
+      return {
+        ...state,
+        prices: action.payload,
+      };
+    case actionTypes.FETCH_PAYMENT_ACTION:
+      return {
+        ...state,
+        payments: action.payload,
+      };
+    case actionTypes.FETCH_PROVINCE_ACTION:
+      return {
+        ...state,
+        provinces: action.payload,
       };
     default:
       return state;

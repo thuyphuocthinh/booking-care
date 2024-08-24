@@ -29,3 +29,15 @@ export const updateDetailDoctorService = (doctorInfo) => {
     doctorInfo
   );
 };
+
+export const getExtraInfoDoctorService = (doctorId) => {
+  return axios.get(
+    `http://localhost:8080/api/doctors/get-extra-info-doctor/${doctorId}`
+  );
+};
+
+export const getProfileDoctorService = (doctorId) => {
+  return axios.get(
+    `http://localhost:8080/api/doctors/get-profile-doctor/${doctorId}`
+  );
+};

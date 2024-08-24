@@ -1,17 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./DoctorSchedule.scss";
 import moment from "moment";
 import { languages } from "../../../utils";
 import { getScheduleDoctorByDate } from "../../../services/scheduleService";
+import BookingModal from "./Modal/BookingModal";
 
 class DoctorSchedule extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dataTime: {},
       allDays: [],
       timesByDay: [],
       initialDay: "",
+      isOpenModal: false,
     };
   }
 
@@ -86,60 +89,82 @@ class DoctorSchedule extends Component {
     this.getSchedule(doctorId, value);
   };
 
+  openModal = (data) => {
+    this.setState({
+      isOpenModal: true,
+      dataTime: data,
+    });
+  };
+
+  closeModal = () => {
+    this.setState({
+      isOpenModal: false,
+    });
+  };
+
   render() {
     return (
-      <div className="card">
-        <div className="card-header fw-bold">
-          <i className="fas fa-calendar-alt"></i>
-          <span className="ms-2">
-            Lịch khám (Chọn ngày để xem thông tin lịch khám)
-          </span>
-        </div>
-        <div className="card-body">
-          <div className="dates my-2">
-            <select
-              name="date"
-              className="form-select"
-              style={{ width: "200px" }}
-              onChange={this.handleSelect}
-            >
-              {this.state.allDays.map((item) => {
-                return (
-                  <option key={item.label} value={item.value}>
-                    {item.label}
-                  </option>
-                );
-              })}
-            </select>
+      <Fragment>
+        <BookingModal
+          isOpenModal={this.state.isOpenModal}
+          openModal={this.openModal}
+          closeModal={this.closeModal}
+          dataTime={this.state.dataTime}
+        />
+        <div className="card">
+          <div className="card-header fw-bold">
+            <i className="fas fa-calendar-alt"></i>
+            <span className="ms-2">
+              Lịch khám (Chọn ngày để xem thông tin lịch khám)
+            </span>
           </div>
-          <div className="times">
-            {this.state.timesByDay.length > 0 ? (
-              <div className="mt-3 d-flex flex-wrap align-items-center">
-                {this.state.timesByDay.map((item) => {
-                  const time =
-                    this.props.language === languages.VI
-                      ? item.timeTypeData.valueVI
-                      : item.timeTypeData.valueEn;
+          <div className="card-body">
+            <div className="dates my-2">
+              <select
+                name="date"
+                className="form-select"
+                style={{ width: "200px" }}
+                onChange={this.handleSelect}
+              >
+                {this.state.allDays.map((item) => {
                   return (
-                    <button
-                      className="btn btn-warning px-4 me-3 mb-3"
-                      style={{
-                        height: "40px",
-                        width: "180px",
-                      }}
-                      key={item.id}
-                    >
-                      {time}
-                    </button>
+                    <option key={item.label} value={item.value}>
+                      {item.label}
+                    </option>
                   );
                 })}
-              </div>
-            ) : (
-              <p className="mt-3 p-0 mb-0">Hiện không có lịch khám nào</p>
-            )}
+              </select>
+            </div>
+            <div className="times">
+              {this.state.timesByDay.length > 0 ? (
+                <div className="mt-3 d-flex flex-wrap align-items-center">
+                  {this.state.timesByDay.map((item) => {
+                    const time =
+                      this.props.language === languages.VI
+                        ? item.timeTypeData.valueVI
+                        : item.timeTypeData.valueEn;
+                    return (
+                      <button
+                        className="btn btn-warning px-4 me-3 mb-3"
+                        style={{
+                          height: "40px",
+                          width: "180px",
+                        }}
+                        onClick={() => this.openModal(item)}
+                        key={item.id}
+                      >
+                        {time}
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className="mt-3 p-0 mb-0">Hiện không có lịch khám nào</p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

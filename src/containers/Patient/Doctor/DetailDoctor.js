@@ -6,6 +6,7 @@ import "./DetailDoctor.scss";
 import { getDetailDoctorService } from "../../../services/doctorService";
 import { languages } from "../../../utils";
 import DoctorSchedule from "./DoctorSchedule";
+import DoctorExtraInfo from "./DoctorExtraInfo";
 
 class DetailDoctor extends Component {
   constructor(props) {
@@ -111,16 +112,13 @@ class DetailDoctor extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-md-7 mt-5">
+              <div className="col-md-6 mt-5">
                 <div className="schedule-doctor">
                   <DoctorSchedule doctorId={this.props.match.params.id} />
                 </div>
               </div>
-              <div className="col-md-5 mt-5">
-                <div className="card">
-                  <div className="card-header fw-bold">Phòng khám</div>
-                  <div className="card-body"></div>
-                </div>
+              <div className="col-md-6 mt-5">
+                <DoctorExtraInfo doctorId={this.props.match.params.id} />
               </div>
               <div className="col-12 mt-5">
                 <div className="detail-doctor">
