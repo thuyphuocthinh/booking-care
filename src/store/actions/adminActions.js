@@ -1,4 +1,5 @@
 import { getAllCodeService } from "../../services/allCodeService";
+import { getAllClinicService } from "../../services/clinicService";
 import { getAllSpecialtyService } from "../../services/specialtyService";
 import {
   deleteUser,
@@ -213,6 +214,22 @@ export const fetchSpecialtiesAction = () => {
       if (res && res.data.errCode === 0) {
         dispatch({
           type: actionTypes.FETCH_SPECIALTIES_ACTION,
+          payload: res.data.data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const fetchClinicsAction = () => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await getAllClinicService();
+      if (res && res.data.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_CLINIC_ACTION,
           payload: res.data.data,
         });
       }

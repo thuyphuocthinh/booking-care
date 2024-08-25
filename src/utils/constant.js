@@ -6,6 +6,7 @@ export const path = {
   SYSTEM: "/system",
   VERIFY_EMAIL_BOOKING: "/booking/verify",
   DETAIL_SPECIALTY: "/specialtyDetail/:id",
+  DETAIL_CLINIC: "/clinicDetail/:id",
 };
 
 export const VND_USD = 0.00004;

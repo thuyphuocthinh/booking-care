@@ -1,3 +1,20 @@
 .medical-facility-section {
     background-color: #fff;
+    .section-content {
+        .section-outer {
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+            .section-inner {
+                h4 {
+                    font-size: 16px;
+                    text-align: center;
+                }
+            }
+            &:hover h4 {
+                font-weight: bold;
+            }
+        }
+    }
 }

@@ -47,11 +47,11 @@ export const adminMenu = [
   },
   {
     // quản lí phòng khám
-    name: "menu.admin.handbook",
+    name: "menu.admin.clinics",
     menus: [
       {
-        name: "menu.admin.manage-handbook",
-        link: "/system/manage-handbook",
+        name: "menu.admin.manage-clinics",
+        link: "/system/manage-clinic",
       },
     ],
   },
@@ -65,6 +65,10 @@ export const doctorMenu = [
       {
         name: "menu.doctor.manage-schedule",
         link: "/doctor/manage-schedule",
+      },
+      {
+        name: "menu.doctor.manage-patient",
+        link: "/doctor/manage-patient",
       },
     ],
   },

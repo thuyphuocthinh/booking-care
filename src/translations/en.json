@@ -74,7 +74,8 @@
       "manage-handbook": "Manage handbook"
     },
     "doctor": {
-      "manage-schedule": "Manage schedule"
+      "manage-schedule": "Manage schedule",
+      "manage-patient": "Manage patient"
     }
   },
   "system": {

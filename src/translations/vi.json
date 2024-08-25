@@ -74,7 +74,8 @@
       "manage-handbook": "Quản lí cẩm nang"
     },
     "doctor": {
-      "manage-schedule": "Quản lí lịch khám"
+      "manage-schedule": "Quản lí lịch khám",
+      "manage-patient": "Quản lí lịch hẹn"
     }
   },
   "system": {

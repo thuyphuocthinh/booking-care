@@ -53,3 +53,15 @@ export const getDoctorIdsByProvinceService = (provinceId, specialtyId) => {
     `http://localhost:8080/api/doctors/get-doctorIds-by-province/${provinceId}/${specialtyId}`
   );
 };
+
+export const getDoctorIdsByClinicService = (clinicId) => {
+  return axios.get(
+    `http://localhost:8080/api/doctors/get-doctorIds-by-clinic/${clinicId}`
+  );
+};
+
+export const getListPatientsService = (doctorId, date) => {
+  return axios.get(
+    `http://localhost:8080/api/doctors/get-list-patients/${doctorId}/${date}`
+  );
+};

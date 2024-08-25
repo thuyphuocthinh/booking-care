@@ -16,6 +16,7 @@ import {
 } from "../../../services/doctorService";
 import { FormattedMessage } from "react-intl";
 import {
+  fetchClinicsAction,
   fetchPaymentsAction,
   fetchPricesAction,
   fetchProvincesAction,
@@ -35,6 +36,7 @@ class ManageDoctor extends Component {
       selectedPayment: null,
       selectedProvince: null,
       selectedSpecialty: null,
+      selectedClinic: null,
       doctors: [],
       prices: [],
       provinces: [],
@@ -50,6 +52,7 @@ class ManageDoctor extends Component {
         provinceId: "",
         specialtyId: "",
         paymentId: "",
+        clinicId: "",
         note: "",
         addressClinic: "",
         nameClinic: "",
@@ -58,7 +61,6 @@ class ManageDoctor extends Component {
   }
 
   handleChangeSelectDoctor = async (selectedOption) => {
-    console.log(selectedOption);
     this.setState({
       selectedDoctor: selectedOption,
       doctor: {
@@ -124,11 +126,25 @@ class ManageDoctor extends Component {
           name: "priceId",
           selected: "selectedPrice",
         };
+        const selectedClinic = {
+          value: data.doctorInfoData.clinicData?.id,
+          label: data.doctorInfoData.clinicData?.name,
+          name: "clinicId",
+          selected: "selectedClinic",
+        };
+        const selectedSpecialty = {
+          value: data.doctorInfoData.specialtyData?.id,
+          label: data.doctorInfoData.specialtyData?.name,
+          name: "specialtyId",
+          selected: "selectedSpecialty",
+        };
         this.setState({
           selectedDoctor: selectedOption,
           selectedPayment: selectedPayment,
           selectedProvince: selectedProvince,
           selectedPrice: selectedPrice,
+          selectedClinic: selectedClinic,
+          selectedSpecialty: selectedSpecialty,
           hasOldData: true,
           doctor: {
             ...this.state.doctor,
@@ -138,6 +154,8 @@ class ManageDoctor extends Component {
             priceId: selectedPrice.value,
             provinceId: selectedProvince.value,
             paymentId: selectedPayment.value,
+            specialtyId: selectedSpecialty?.value,
+            clinicId: selectedClinic?.value,
           },
         });
       } else {
@@ -175,6 +193,7 @@ class ManageDoctor extends Component {
     this.props.getPayments();
     this.props.getProvinces();
     this.props.getSpecialties();
+    this.props.getClinics();
   };
 
   componentDidUpdate = (prevProps, prevState, snapshot) => {
@@ -201,6 +220,11 @@ class ManageDoctor extends Component {
     if (prevProps.specialties !== this.props.specialties) {
       this.setState({
         specialties: this.props.specialties,
+      });
+    }
+    if (prevProps.clinics !== this.props.clinics) {
+      this.setState({
+        clinics: this.props.clinics,
       });
     }
   };
@@ -247,6 +271,7 @@ class ManageDoctor extends Component {
         toast.success("Save doctor info successfully");
         this.setState({
           doctor: {
+            clinicId: "",
             doctorId: "",
             description: "",
             contentHTML: "",
@@ -264,6 +289,7 @@ class ManageDoctor extends Component {
           selectedPayment: null,
           selectedProvince: null,
           selectedSpecialty: null,
+          selectedClinic: null,
         });
       }
     } else {
@@ -280,6 +306,7 @@ class ManageDoctor extends Component {
         this.setState({
           doctor: {
             doctorId: "",
+            clinicId: "",
             description: "",
             contentHTML: "",
             contentMarkdown: "",
@@ -296,6 +323,7 @@ class ManageDoctor extends Component {
           selectedPayment: null,
           selectedProvince: null,
           selectedSpecialty: null,
+          selectedClinic: null,
           hasOldData: false,
         });
       }
@@ -323,6 +351,7 @@ class ManageDoctor extends Component {
       selectedPayment,
       selectedPrice,
       selectedProvince,
+      selectedClinic,
     } = this.state;
     return (
       <div className="container">
@@ -519,22 +548,18 @@ class ManageDoctor extends Component {
                 <FormattedMessage id="admin.manage-doctor.clinic" />
               </label>
               <Select
-                // name="clinicId"
-                // id="clinicId"
-                // value={selectedClinic}
-                // onChange={this.handleChangeSelectCommon}
-                // options={this.state.prices.map((item) => {
-                //   const { language } = this.props;
-                //   let title =
-                //     language === languages.VI ? item.valueVi : item.valueEn;
-                //   let currency = language === languages.VI ? "VND" : "USD";
-                //   return {
-                //     value: item.keyMap,
-                //     label: parseInt(title).toLocaleString() + " " + currency,
-                //     name: "clinicId",
-                //     selected: "selectedClinic",
-                //   };
-                // })}
+                name="clinicId"
+                id="clinicId"
+                value={selectedClinic}
+                onChange={this.handleChangeSelectCommon}
+                options={this.state.clinics.map((item) => {
+                  return {
+                    value: item.id,
+                    label: item.name,
+                    name: "clinicId",
+                    selected: "selectedClinic",
+                  };
+                })}
                 placeholder={"Chọn phòng khám"}
               />
             </div>
@@ -581,6 +606,7 @@ const mapStateToProps = (state) => {
     payments: state.admin.payments,
     provinces: state.admin.provinces,
     specialties: state.admin.specialties,
+    clinics: state.admin.clinics,
   };
 };
 
@@ -591,6 +617,7 @@ const mapDispatchToProps = (dispatch) => {
     getPayments: () => dispatch(fetchPaymentsAction()),
     getProvinces: () => dispatch(fetchProvincesAction()),
     getSpecialties: () => dispatch(fetchSpecialtiesAction()),
+    getClinics: () => dispatch(fetchClinicsAction()),
   };
 };
 

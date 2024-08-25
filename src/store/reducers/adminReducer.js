@@ -13,6 +13,7 @@ const initialState = {
   payments: [],
   provinces: [],
   specialties: [],
+  clinics: [],
 };
 
 const appReducer = (state = initialState, action) => {
@@ -88,6 +89,11 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         specialties: action.payload,
+      };
+    case actionTypes.FETCH_CLINIC_ACTION:
+      return {
+        ...state,
+        clinics: action.payload,
       };
     default:
       return state;
