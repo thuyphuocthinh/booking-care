@@ -171,7 +171,8 @@
   },
   "homepage": {
     "outstanding-doctor": "Bác sĩ nổi bật",
-    "more-info": "Xem thêm"
+    "more-info": "Xem thêm",
+    "specialty": "Chuyên khoa phổ biến"
   },
   "manage-schedule": {
     "title": "Thêm lịch khám"
@@ -187,6 +188,8 @@
       "province": "Tỉnh/thành",
       "addressClinic": "Địa chỉ phòng khám",
       "nameClinic": "Tên phòng khám",
+      "specialty": "Chọn chuyên khoa",
+      "clinic": "Chọn phòng khám",
       "note": "Ghi chú",
       "save": "Lưu thông tin",
       "update": "Cập nhật"

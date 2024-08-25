@@ -1,4 +1,5 @@
 import { getAllCodeService } from "../../services/allCodeService";
+import { getAllSpecialtyService } from "../../services/specialtyService";
 import {
   deleteUser,
   getAllUsersService,
@@ -166,11 +167,8 @@ export const fetchPricesAction = () => {
           type: actionTypes.FETCH_PRICE_ACTION,
           payload: res.data.data,
         });
-      } else {
-        dispatch(fetchGenderFailed());
       }
     } catch (error) {
-      dispatch(fetchGenderFailed());
       console.log(error);
     }
   };
@@ -185,11 +183,8 @@ export const fetchPaymentsAction = () => {
           type: actionTypes.FETCH_PAYMENT_ACTION,
           payload: res.data.data,
         });
-      } else {
-        dispatch(fetchGenderFailed());
       }
     } catch (error) {
-      dispatch(fetchGenderFailed());
       console.log(error);
     }
   };
@@ -204,11 +199,24 @@ export const fetchProvincesAction = () => {
           type: actionTypes.FETCH_PROVINCE_ACTION,
           payload: res.data.data,
         });
-      } else {
-        dispatch(fetchGenderFailed());
       }
     } catch (error) {
-      dispatch(fetchGenderFailed());
+      console.log(error);
+    }
+  };
+};
+
+export const fetchSpecialtiesAction = () => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await getAllSpecialtyService();
+      if (res && res.data.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_SPECIALTIES_ACTION,
+          payload: res.data.data,
+        });
+      }
+    } catch (error) {
       console.log(error);
     }
   };

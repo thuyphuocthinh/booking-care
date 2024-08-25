@@ -171,7 +171,8 @@
   },
   "homepage": {
     "outstanding-doctor": "Outstanding doctors",
-    "more-info": "See more"
+    "more-info": "See more",
+    "specialty": "Popular specialties"
   },
   "manage-schedule": {
     "title": "Add schedule"
@@ -187,6 +188,8 @@
       "province": "Province/City",
       "addressClinic": "Clinic address",
       "nameClinic": "Clinic name",
+      "specialty": "Specialty",
+      "clinic": "Clinic",
       "note": "Note",
       "save": "Save",
       "update": "Update"

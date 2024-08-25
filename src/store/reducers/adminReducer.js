@@ -12,6 +12,7 @@ const initialState = {
   prices: [],
   payments: [],
   provinces: [],
+  specialties: [],
 };
 
 const appReducer = (state = initialState, action) => {
@@ -82,6 +83,11 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         provinces: action.payload,
+      };
+    case actionTypes.FETCH_SPECIALTIES_ACTION:
+      return {
+        ...state,
+        specialties: action.payload,
       };
     default:
       return state;

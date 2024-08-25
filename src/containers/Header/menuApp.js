@@ -36,7 +36,7 @@ export const adminMenu = [
     ],
   },
   {
-    // quản lí phòng khám
+    // quản lí chuyen khoa
     name: "menu.admin.specialty",
     menus: [
       {

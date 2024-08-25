@@ -41,3 +41,15 @@ export const getProfileDoctorService = (doctorId) => {
     `http://localhost:8080/api/doctors/get-profile-doctor/${doctorId}`
   );
 };
+
+export const getDoctorIdsBySpecialtyService = (specialtyId) => {
+  return axios.get(
+    `http://localhost:8080/api/doctors/get-doctorIds-by-specialty/${specialtyId}`
+  );
+};
+
+export const getDoctorIdsByProvinceService = (provinceId, specialtyId) => {
+  return axios.get(
+    `http://localhost:8080/api/doctors/get-doctorIds-by-province/${provinceId}/${specialtyId}`
+  );
+};

@@ -4,7 +4,9 @@ import "./Specialty.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import sectionImg from "../../../assets/images/specialty.jpg";
+import { getTopSpecialtyService } from "../../../services/specialtyService";
+import { NavLink } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -29,6 +31,26 @@ function SamplePrevArrow(props) {
 }
 
 class Specialty extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      specialties: [],
+    };
+  }
+
+  componentDidMount = async () => {
+    try {
+      const resp = await getTopSpecialtyService(10);
+      if (resp.status === 200 && resp.data.errCode === 0) {
+        this.setState({
+          specialties: resp.data.data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   render() {
     const settings = {
       dots: false,
@@ -42,63 +64,32 @@ class Specialty extends Component {
       nextArrow: <SampleNextArrow />,
       prevArrow: <SamplePrevArrow />,
     };
+
     return (
       <div className="section section-specialty d-flex align-items-center">
         <div className="container">
           <div className="section-header">
-            <h3>Chuyên khoa phổ biến</h3>
-            <button> Xem thêm </button>
+            <h3>
+              <FormattedMessage id="homepage.specialty" />
+            </h3>
+            <button>
+              <FormattedMessage id="homepage.more-info" />{" "}
+            </button>
           </div>
           <div className="section-content">
             <Slider {...settings}>
-              <div className="section-outer">
-                <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
-                </div>
-              </div>
-              <div className="section-outer">
-                <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
-                </div>
-              </div>
-              <div className="section-outer">
-                <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
-                </div>
-              </div>
-              <div className="section-outer">
-                <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
-                </div>
-              </div>
-              <div className="section-outer">
-                <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
-                </div>
-              </div>
-              <div className="section-outer">
-                <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
-                </div>
-              </div>
-              <div className="section-outer">
-                <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
-                </div>
-              </div>
-              <div className="section-outer">
-                <div className="section-inner">
-                  <img src={sectionImg} />
-                  <h4>Cơ xương khớp</h4>
-                </div>
-              </div>
+              {this.state.specialties.map((item) => {
+                return (
+                  <div className="section-outer" key={item.id}>
+                    <NavLink to={`/specialtyDetail/${item.id}`}>
+                      <div className="section-inner">
+                        <img src={item.image} />
+                        <h4>{item.name}</h4>
+                      </div>
+                    </NavLink>
+                  </div>
+                );
+              })}
             </Slider>
           </div>
         </div>

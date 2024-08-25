@@ -6,3 +6,9 @@ export const saveBookingInfoService = (bookingInfo) => {
     bookingInfo
   );
 };
+
+export const verifyBookingService = (token, doctorId) => {
+  return axios.get(
+    `http://localhost:8080/api/booking/verify?token=${token}&doctorId=${doctorId}`
+  );
+};

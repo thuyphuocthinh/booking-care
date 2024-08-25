@@ -4,6 +4,8 @@ export const path = {
   LOGIN: "/login",
   LOG_OUT: "/logout",
   SYSTEM: "/system",
+  VERIFY_EMAIL_BOOKING: "/booking/verify",
+  DETAIL_SPECIALTY: "/specialtyDetail/:id",
 };
 
 export const VND_USD = 0.00004;
