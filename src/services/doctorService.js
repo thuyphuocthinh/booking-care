@@ -65,3 +65,7 @@ export const getListPatientsService = (doctorId, date) => {
     `http://localhost:8080/api/doctors/get-list-patients/${doctorId}/${date}`
   );
 };
+
+export const sendRemedyService = (info) => {
+  return axios.patch(`http://localhost:8080/api/doctors/send-remedy`, info);
+};

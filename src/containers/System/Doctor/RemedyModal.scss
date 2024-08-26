@@ -1,0 +1,13 @@
+#remedy-modal {
+    max-width: 800px !important;
+    width: 100%;
+    .modal-content {
+        width: 100%;
+        .modal-header {
+            button {
+                border: 1px solid #0071ba;
+                width: 30px;
+            }
+        }
+    }
+}
